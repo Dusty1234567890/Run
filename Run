@@ -1,0 +1,107 @@
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local PhantomForcesWindow = Library:NewWindow("GASTER HUB")
+
+local KillingCheats = PhantomForcesWindow:NewSection("Auto exit the maze")
+
+KillingCheats:CreateToggle("Auto exit", function(value)
+if value then
+getgenv().test = true
+while wait() do
+if getgenv().test == true then
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function checkInLabyrinth()
+    local character = LocalPlayer.Character
+    if character then
+        local inLabyrinth = character:FindFirstChild("InLabyrinth")
+        if inLabyrinth then
+            -- Execute desired script here
+            for _, descendant in pairs(workspace:GetDescendants()) do
+    if string.find(descendant.Name, "Labyrinth") and descendant:FindFirstChild("Doors") then
+        local doors = descendant.Doors
+        for _, door in ipairs(doors:GetChildren()) do
+            if door:FindFirstChild("Hitbox") and door.Hitbox:FindFirstChild("TouchInterest") then
+                -- Teleport the player to the hitbox's position
+                local player = game.Players.LocalPlayer
+                local humanoidRootPart = player.Character.HumanoidRootPart
+                humanoidRootPart.CFrame = door.Hitbox.CFrame
+                break -- Exit the loop after teleporting the player
+            end
+        end
+    end
+end
+        end
+    end
+end
+
+-- Check for InLabyrinth child when character is added
+LocalPlayer.CharacterAdded:Connect(checkInLabyrinth)
+
+-- Check for InLabyrinth child when player joins
+if LocalPlayer.Character then
+    checkInLabyrinth()
+end
+    end
+end
+else
+getgenv().test = false
+while wait() do
+if getgenv().test == true then
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function checkInLabyrinth()
+    local character = LocalPlayer.Character
+    if character then
+        local inLabyrinth = character:FindFirstChild("InLabyrinth")
+        if inLabyrinth then
+            -- Execute desired script here
+            for _, descendant in pairs(workspace:GetDescendants()) do
+    if string.find(descendant.Name, "Labyrinth") and descendant:FindFirstChild("Doors") then
+        local doors = descendant.Doors
+        for _, door in ipairs(doors:GetChildren()) do
+            if door:FindFirstChild("Hitbox") and door.Hitbox:FindFirstChild("TouchInterest") then
+                -- Teleport the player to the hitbox's position
+                local player = game.Players.LocalPlayer
+                local humanoidRootPart = player.Character.HumanoidRootPart
+                humanoidRootPart.CFrame = door.Hitbox.CFrame
+                break -- Exit the loop after teleporting the player
+            end
+        end
+    end
+end
+        end
+    end
+end
+
+-- Check for InLabyrinth child when character is added
+LocalPlayer.CharacterAdded:Connect(checkInLabyrinth)
+
+-- Check for InLabyrinth child when player joins
+if LocalPlayer.Character then
+    checkInLabyrinth()
+end
+    end
+end
+end
+end)
+
+local KillingCheats = PhantomForcesWindow:NewSection("Credits")
+
+KillingCheats:CreateButton("THEDARKNESSKEEPSGROWING", function()
+print(1)
+end)
+
+KillingCheats:CreateButton("discord server link", function()
+setclipboard("https://discord.com/invite/9yUMDdQ8As")
+end)
+
+local KillingCheats = PhantomForcesWindow:NewSection("Reset Character button")
+
+KillingCheats:CreateButton("kill yourself if fall", function(value)
+local A = game.Players.LocalPlayer
+local B = A.Character:FindFirstChild("Humanoid")
+B.Health = 0
+end)
